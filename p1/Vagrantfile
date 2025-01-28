@@ -1,0 +1,30 @@
+
+Vagrant.configure("2") do |config|
+
+  # Server configuration
+  config.vm.box = "debian/bookworm64"       # Define what 'box' itll use, basically a Docker Image i guess...
+  config.vm.define "ngobertS" do |server|
+    server.vm.hostname = "ngobertS"         # Defines the hostname of the VM
+    server.vm.network "private_network", ip: "192.168.56.110", hostname: true # Defines the ip of the machine etc. All of this is explained in the doc. Also makes the IP static
+    server.vm.provider "virtualbox" do |vb| # I honesltly don't know how you're supposed to know that, it's not in any doc. ???
+      vb.memory = "1024"                    # ?
+      vb.cpus = "2"                         # ?
+      vb.name = "ngobertS"                  # ?
+    end                                     # ?
+    server.vm.provision "file", source: "./confs/.env", destination: "/home/vagrant/.env"
+    server.vm.provision "shell", path: "./scripts/server.sh"
+  end
+
+  config.vm.define "ngobertSW" do |worker1|
+    worker1.vm.hostname = "ngobertSW"
+    worker1.vm.network "private_network", ip: "192.168.56.111", hostname: true
+    worker1.vm.provider "virtualbox" do |vb|
+      vb.memory = "1024"
+      vb.cpus = "2"
+      vb.name = "ngobertSW"
+    end
+    worker1.vm.provision "file", source: "./confs/.env", destination: "/home/vagrant/.env"
+    worker1.vm.provision "shell", path: './scripts/worker.sh'
+  end
+
+end

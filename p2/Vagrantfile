@@ -1,0 +1,16 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "debian/bookworm64"
+
+  config.vm.define "ngobertS" do |server|
+    server.vm.hostname = "ngobertS"
+    server.vm.network "private_network", ip: "192.168.56.110", hostname: true
+    server.vm.provider "virtualbox" do |vm|
+      vm.memory = "1024"
+      vm.cpus = 2
+    end
+
+  end
+end
