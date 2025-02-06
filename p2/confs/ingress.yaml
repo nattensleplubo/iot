@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: ingress-iot
   annotations:
-    kubernetes.io/ingress.class: "traefik"
+    traefik.ingress.kubernetes.io/router.entrypoints: web
 spec:
   rules:
   - host: app1.com
@@ -13,7 +13,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: app1
+            name: app1-service
             port:
               number: 80
   - host: app2.com
@@ -23,6 +23,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: app2
+            name: app2-service
             port:
               number: 80
