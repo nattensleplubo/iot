@@ -13,7 +13,12 @@ spec:
         app: app2
     spec:
       containers:
-      - name: app2
-        image: wordpress
-        ports:
-        - containerPort: 80
+        - name: nginx
+          image: nietocda/nginx-iot:v2
+          env:
+            - name: APP_NAME
+              value: "app2"
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
