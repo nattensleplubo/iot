@@ -21,6 +21,3 @@ sudo k3d cluster create mycluster --port "30001:30001@server:0"
 sudo kubectl create namespace argocd
 sudo kubectl create namespace dev
 sudo kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
-
-
-echo "########### to get the password use: kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="'{.data.password}'" | base64 --decode ###########"
