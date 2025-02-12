@@ -11,7 +11,6 @@
 ## Walkthrough
 
 https://dev.to/danielcristho/k3d-getting-started-with-argocd-5c6l
-https://gitlab.com/BeBel42/inception-of-things/-/tree/master/p3?ref_type=heads
 ##### What do we have to put on the public repo ?
 idk yet
 
